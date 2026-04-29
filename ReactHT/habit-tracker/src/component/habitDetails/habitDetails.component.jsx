@@ -25,6 +25,7 @@ const handleSave = async (e) => {
     return;
   }
   setIsEditing(false);
+
   try {
     if (!id) {
       const response = await addHabit(text, desc); 
