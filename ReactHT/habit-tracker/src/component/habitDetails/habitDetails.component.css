@@ -1,0 +1,49 @@
+.actual-task-container{
+    width: 50%;
+    text-align: center;
+}
+
+.task-tracker{
+    width: 30px;
+    height: 30px;
+    border: 1px solid black;
+    border-radius: 30px;
+}
+
+td,th{
+    /* display: flex; */
+    width: 60px;
+    text-align: center;
+    place-items: center;
+}
+
+.input-task-container{
+    display: flex;
+    width: 30vw;
+    padding: 10px 70px;
+    text-align: center;
+    align-items: flex-start;
+}
+
+.bgOne{
+    background-color: blue;
+}
+
+tr{
+    display: flex;
+    align-items: center; 
+    justify-content: space-evenly;
+    padding: 5px 20px ;
+    text-align: center;
+}
+
+
+.input-button{
+    border: none;
+  border-bottom: 2px dotted #000;
+  outline: none;
+  padding: 10px;
+  text-align: left;
+  font-size: larger;
+  width: 400px;
+}

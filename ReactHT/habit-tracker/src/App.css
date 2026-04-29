@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+body{
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse; /* Merges cell borders into a single line */
+  font-size: 0.9em;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header styling */
+thead{
+  width: 100vw;
+}
+thead tr {
+  display: flex;
+  justify-content: space-between;
+  background-color: #009879;
+  color: #ffffff;
+  text-align: center;
+  margin: 0;
+}
+
+tbody tr {
+  display: flex;
+  justify-content: space-between;
+  color: #009879;
+  text-align: center;
+  margin: 0;
+}
+
+/* Zebra striping for rows */
+tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+/* Bottom border for the last row */
+tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}
+
+/* Hover effect for better interactivity */
+tbody tr:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+}

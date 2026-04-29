@@ -1,0 +1,41 @@
+.homepage{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    place-items: center;
+    min-height: 90vh ;
+    background: url("/src/assets/Bg.jpg") ;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.homepage-container{
+    background-color: rgba(112, 110, 110, 0.678);
+    padding: 50px;
+    border: none;
+    border-radius: 20px;
+    
+}
+
+.hometext {
+  color: black;
+}
+
+#typ-button {
+  color: white;
+  background-color: #4141ff;
+  padding: 20px;
+  font-size: large;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+}
+
+#typ-button:hover{
+    background-color: #1a1a52;
+}
