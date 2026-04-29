@@ -9,3 +9,11 @@ export const habitTrackerData = async() => {
     }
 }
 
+export const addHabit = async (name, description) => {
+    const payload = { 
+        name: name, 
+        description: description 
+    };
+    const res = await axios.post("http://localhost:4000/addHabit", payload);
+    return res.data;
+};

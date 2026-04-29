@@ -9,6 +9,7 @@ const {
   delHabitCtrl,
 } = require("./Controllers/delHabit.controller");
 const { delHabitVal } = require("./Validations/delHabit.controller");
+const client = require("./database");
 
 dotenv.config()
 

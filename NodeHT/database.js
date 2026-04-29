@@ -5,7 +5,7 @@ const client = new Client({
   user: "postgres",
   port: 5432,
   password: "Mohar123jvyy",
-  database: "habits",
+  database: "postgres",
 });
 
 client.connect().then(() => console.log("connected"));
