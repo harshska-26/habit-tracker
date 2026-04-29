@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { HabitDet } from "../habitDetails/habitDetails.component";
 import { habitTrackerData } from "../../service/habitTracker.service";
 import "./habit.component.css"
+import { motion } from "framer-motion";
 
 export const Habit = () => {
     const [habit, setHabit] = useState([])
@@ -15,7 +16,9 @@ export const Habit = () => {
   },[])
   return(
     <>
-    
+    <motion.h3 initial={{opacity: 0}}
+    animate={{opacity: 1}}
+    transition={{duration: 2}}>
       <table>
           <thead>
             <tr>
@@ -36,6 +39,7 @@ export const Habit = () => {
           <HabitDet key={habit.id} habit={habit} />
         )
       })}
+    </motion.h3>
     </>
   )
 }

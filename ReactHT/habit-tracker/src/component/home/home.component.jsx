@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import "./home.component.css";
 import { useNavigate } from "react-router-dom";
+import { TbHealthRecognition } from "react-icons/tb";
+
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -12,7 +14,7 @@ export const Home = () => {
 
   return (
     <div className="homepage">
-        <motion.h1
+        <motion.h1 className="hometext"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 2 }}
@@ -21,7 +23,8 @@ export const Home = () => {
           Welcome to HabiSense,
           <p className="hometext">One place to track all your activities</p>
           <button onClick={habitClick} id="typ-button">
-            Track your progress here
+            <TbHealthRecognition />
+Track your progress here
           </button>
       </div>
         </motion.h1>

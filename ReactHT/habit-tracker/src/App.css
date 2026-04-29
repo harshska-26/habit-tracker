@@ -7,13 +7,9 @@ body{
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse; /* Merges cell borders into a single line */
-  font-size: 0.9em;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  place-items: center;
 }
 
 h1 {
@@ -23,31 +19,12 @@ h1 {
   padding: 0;
 }
 
-/* Header styling */
-thead{
-  width: 100vw;
-}
-thead tr {
-  display: flex;
-  justify-content: space-between;
-  background-color: #009879;
-  color: #ffffff;
-  text-align: center;
-  margin: 0;
-}
-
-tbody tr {
-  display: flex;
-  justify-content: space-between;
-  color: #009879;
-  text-align: center;
-  margin: 0;
+h3{
+  place-items: center;
 }
 
 /* Zebra striping for rows */
-tbody tr:nth-of-type(even) {
-  background-color: #f3f3f3;
-}
+
 
 /* Bottom border for the last row */
 tbody tr:last-of-type {

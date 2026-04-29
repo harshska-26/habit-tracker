@@ -1,49 +1,71 @@
-.actual-task-container{
-    width: 50%;
-    text-align: center;
+.actual-task-container {
+  width: 30vw;
+  text-align: center;
 }
 
-.task-tracker{
-    width: 30px;
-    height: 30px;
-    border: 1px solid black;
-    border-radius: 30px;
+.task-tracker {
+  width: 35px;
+  height: 35px;
+  border: 3px solid #000000;
+  border-radius: 30px;
 }
 
-td,th{
-    /* display: flex; */
-    width: 60px;
-    text-align: center;
-    place-items: center;
+td,
+th {
+  /* display: flex; */
+  width: 60px;
+  text-align: center;
+  place-items: center;
 }
 
-.input-task-container{
-    display: flex;
-    width: 30vw;
-    padding: 10px 70px;
-    text-align: center;
-    align-items: flex-start;
+.edit-fields {
+  display: flex;
+  place-items: center;
 }
 
-.bgOne{
-    background-color: blue;
+.input-task-container {
+  width: 35vw;
+  padding: 10px;
+  text-align: center;
+  background-color: RGB(255, 255, 255);
 }
 
-tr{
-    display: flex;
-    align-items: center; 
-    justify-content: space-evenly;
-    padding: 5px 20px ;
-    text-align: center;
+.bgOne {
+  background-color: #009879;
 }
 
+tbody tr {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px ;
+  text-align: center;
+}
 
-.input-button{
-    border: none;
+#taskname-input {
+  background-color: RGB(255, 255, 255);
+  border: none;
   border-bottom: 2px dotted #000;
   outline: none;
   padding: 10px;
   text-align: left;
-  font-size: larger;
-  width: 400px;
+  font-size: medium;
+  width: 100px;
 }
+
+#desc-input {
+  background-color: RGB(255, 255, 255);
+  border: none;
+  border-bottom: 2px dotted #000;
+  outline: none;
+  padding: 10px;
+  text-align: left;
+  font-size: medium;
+  width: 450px;
+}
+
+tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+

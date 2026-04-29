@@ -38,29 +38,28 @@ export const HabitDet = ({ habit }) => {
     <table>
       <tbody>
         <tr key={id}>
-          <td className="input-task-container">
+          <td className="input-task-container" onClick={() => setIsEditing(true)} onBlur={() => setIsEditing(false)}>
             {isEditing ? (
-              <div className="edit-fields">
+              <div className="edit-fields" >
                 <input
-                  className="input-button"
+                  id="taskname-input"
                   type="text"
                   value={text}
                   placeholder="Habit name..."
                   onChange={(e) => setText(e.target.value)}
                   onKeyDown={handleKeyDown}
-                />
+                />-
                 <input
-                  className="input-button"
+                  id="desc-input"
                   type="text"
                   value={desc}
                   placeholder="Description..."
                   onChange={(e) => setDesc(e.target.value)}
                   onKeyDown={handleKeyDown}
-                  onBlur={() => setIsEditing(false)}
                 />
               </div>
             ) : (
-              <h3 onClick={() => setIsEditing(true)}>
+              <h3 >
                 {text} - {desc}
               </h3>
             )}
