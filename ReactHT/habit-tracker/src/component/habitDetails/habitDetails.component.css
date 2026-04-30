@@ -1,71 +1,134 @@
-.actual-task-container {
-  width: 30vw;
-  text-align: center;
+.habit-card {
+  background: rgb(255, 255, 255);
+  border-radius: 20px;
+  width: 350px;
+  padding: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+  margin: 15px;
+  font-family: 'Montserrat', sans-serif;
 }
 
-.task-tracker {
-  width: 35px;
-  height: 35px;
-  border: 3px solid #000000;
-  border-radius: 30px;
+.accent-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 6px;
 }
+.accent-bar.pink { background: #ff99cc; }
+.accent-bar.blue { background: #99ccff; }
 
-td,
-th {
-  /* display: flex; */
-  width: 60px;
-  text-align: center;
-  place-items: center;
-}
-
-.edit-fields {
+.habit-header {
   display: flex;
-  place-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 
-.input-task-container {
-  width: 35vw;
+.text-section h3 { margin: 0; font-size: 1.1rem; color: #444; }
+.text-section p { margin: 5px 0 0; font-size: 0.85rem; color: #888; }
+
+.flame-badge {
+  background: #ffe6f2;
+  color: #ff66b2;
   padding: 10px;
-  text-align: center;
-  background-color: RGB(255, 255, 255);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40px; height: 40px;
 }
 
-.bgOne {
-  background-color: #009879;
+.habit-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-tbody tr {
+.check-box {
+  width: 50px;
+  height: 50px;
+  background: #eee;
+  border-radius: 12px;
+  cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 5px ;
-  text-align: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: white;
+  transition: 0.3s;
 }
 
-#taskname-input {
-  background-color: RGB(255, 255, 255);
-  border: none;
-  border-bottom: 2px dotted #000;
-  outline: none;
+.check-box.checked {
+  background: #4de6a6;
+}
+
+.view-details {
+  width: 100%;
   padding: 10px;
-  text-align: left;
-  font-size: medium;
-  width: 100px;
-}
-
-#desc-input {
-  background-color: RGB(255, 255, 255);
-  border: none;
-  border-bottom: 2px dotted #000;
+  border: 1px solid #eee;
+  background: #fcfcfc;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+  color: #666;
   outline: none;
-  padding: 10px;
-  text-align: left;
-  font-size: medium;
-  width: 450px;
+  transition: 0.4s;
 }
 
-tbody tr:nth-of-type(even) {
-  background-color: #f3f3f3;
+.view-details:hover {
+  background-color: #ccc;
 }
 
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  opacity: 0;
+  overflow: hidden;
+}
 
+.panel.open{
+  max-height: 500px;
+  opacity: 1;
+  padding: 15px;
+  margin-top: 10px;
+}
+
+.stat-row{
+  display: flex;
+  place-items: center;
+  justify-content: space-around;
+
+}
+
+#taskname-input{
+  width: 80%;
+  padding: 5px 10px;
+  border: 1.5px solid #858585;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+#taskname-input:focus {
+  border-color: #54c9ff;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+#desc-input{
+  width: 80%;
+  padding: 5px 10px;
+  border: 1.5px solid #858585;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.days-row{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  justify-items: center;
+  gap: 10px;
+}

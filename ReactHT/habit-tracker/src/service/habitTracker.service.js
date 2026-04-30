@@ -6,11 +6,13 @@ export const habitTrackerData = async() => {
         return apiRes.data;
     } catch (error) {
         console.log(`error is at fetching response ${error}`)
+        throw error
     }
 }
 
-export const addHabit = async (name, description) => {
+export const addHabit = async (id, name, description) => {
     const payload = { 
+        id: id,
         name: name, 
         description: description 
     };

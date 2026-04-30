@@ -1,16 +1,19 @@
-const { DefFilePath } = require("../constants/constant");
-const { habits } = require("../habits");
-const { dataService } = require("../service/dataService");
-const { writeJSON } = require("../utils/json.util");
+const client = require("../database")
 
-const delHabitCtrl = (req, res, next) => {
-    const dataRes = dataService();
-    const {id} = req.body;
-    console.log(id)
-    const newData = dataRes.habits.filter((eachHabit) => eachHabit.id !== id);
-    dataRes.habits = newData;
-    writeJSON(dataRes, DefFilePath)
-    res.status(200).json(dataRes)
-}
+const delHabitCtrl = async (req, res) => {
+    try {
+        const { id } = req.body;
+        const query = `
+            INSERT INTO habits (name, description) 
+            VALUES ($1, $2) 
+            RETURNING *;
+        `;
+        const result = await client.query(query, [id]);
+        res.status(201).json(result.rows[0]);
+    } catch (error) {
+        console.error("Database error:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+};
 
-module.exports={delHabitCtrl}
+module.exports = { delHabitCtrl };

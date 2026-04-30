@@ -1,29 +1,28 @@
 nav {
-    width: 100vw;
-  position: relative;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-sizing: border-box;
   place-items: center;
-  height: 50px;
-  background-color: whitesmoke;
+  background-color: white;
   border: 2px solid whitesmoke;
+  box-shadow: 5px 5px 5px 5px #00000079;
 }
 
 nav h1 {
   place-items: center;
 }
 
-.nav-center{
-    display: flex;
-    margin-left: 70px;
-    cursor: pointer;
-    place-items: center;
+.nav-center {
+  display: flex;
+  cursor: pointer;
+  place-items: center;
 }
 
-.logo{
-    width: 50px;
-    height: 50px;
-    margin-right: 5px;
-    cursor: pointer;
+.logo {
+  width: 70px;
+  height: 70px;
+  margin-right: 5px;
+  cursor: pointer;
 }

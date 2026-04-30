@@ -1,37 +1,40 @@
-.homepage{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    place-items: center;
-    min-height: 100vh ;
-    background: url("/src/assets/Bg.jpg") ;
-    background-repeat: no-repeat;
-    background-size: cover;
+.homepage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  place-items: center;
+  background: linear-gradient(to top, rgb(165, 255, 255), pink);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
-.homepage-container{
-    display: flex;
-    flex-direction: column;
-    place-items: center;
-    background-color: rgba(14, 14, 14, 0.678);
-    padding: 50px;
-    border: none;
-    border-radius: 20px;
+.homepage-container {
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  background-color: rgba(14, 14, 14, 0.527);
+  padding: 50px;
+  border: none;
+  border-radius: 20px;
+    justify-content: center;
 }
 
 .hometext {
+    margin-top: 25vh;
+    display: flex;
+    justify-content: center;
   color: white;
 }
 
 #typ-button {
-    display: flex;
-    place-items: center;
-    gap: 5px;
-
+  display: flex;
+  place-items: center;
+  gap: 5px;
   color: white;
   background-color: #4141ff;
   padding: 20px;
-  font-size:60%;
+  font-size: 60%;
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
@@ -42,6 +45,6 @@
   transition: background-color 0.5s ease;
 }
 
-#typ-button:hover{
-    background-color: #1a1a52;
+#typ-button:hover {
+  background-color: #1a1a52;
 }
