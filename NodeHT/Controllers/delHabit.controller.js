@@ -1,19 +1,18 @@
-const client = require("../database")
+// Controllers/delHabit.controller.js
+const client = require("../database");
 
 const delHabitCtrl = async (req, res) => {
-    try {
-        const { id } = req.body;
-        const query = `
-            INSERT INTO habits (name, description) 
-            VALUES ($1, $2) 
-            RETURNING *;
-        `;
-        const result = await client.query(query, [id]);
-        res.status(201).json(result.rows[0]);
-    } catch (error) {
-        console.error("Database error:", error);
-        res.status(500).json({ error: "Internal Server Error" });
-    }
+  try {
+    const { id } = req.body; 
+    const query = `DELETE FROM habits WHERE id = $1 RETURNING *;`;
+    const result = await client.query(query, [id]);
+
+    res.status(200).json({ message: "Deleted successfully", deletedHabit: result.rows[0] });
+    console.log("DELETED ID:", id);
+  } catch (error) {
+    console.error("Delete Error:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 };
 
 module.exports = { delHabitCtrl };

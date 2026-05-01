@@ -18,6 +18,7 @@ nav h1 {
   display: flex;
   cursor: pointer;
   place-items: center;
+  margin-left: 70px;
 }
 
 .logo {
@@ -25,4 +26,22 @@ nav h1 {
   height: 70px;
   margin-right: 5px;
   cursor: pointer;
+}
+
+#next-week-nav-btn {
+  background-color: transparent;
+  color: black;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 900;
+  transition: all 1s ease;
+}
+
+#next-week-nav-btn:hover {
+  background-color: rgba(112, 255, 255, 0.558);
+  color: #454545;
+  box-shadow: 2px 2px 2px 2px;
 }

@@ -8,7 +8,7 @@ const {
   delCharCtrl,
   delHabitCtrl,
 } = require("./Controllers/delHabit.controller");
-const { delHabitVal } = require("./Validations/delHabit.controller");
+const { delHabitVal } = require("./Validations/delHabit.validation");
 const client = require("./database");
 
 dotenv.config()
@@ -28,6 +28,20 @@ app.get("/", async (req, res) => {
 });
 app.post("/addHabit", addHabbitVal, addHabbitCtrl);
 app.delete("/delHabit", delHabitVal, delHabitCtrl);
+app.put("/nextWeek", async (req, res) => {
+  try {
+    const query = `
+      UPDATE habits 
+      SET completed_days = '[]'::jsonb, 
+          progress = 0;
+    `;
+    await client.query(query);
+    res.status(200).json({ message: "Started new week" });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to reset for next week" });
+  }
+});
+
 
 const PORT = process.env.PORT || 4000;
 

@@ -8,6 +8,9 @@
   overflow: hidden;
   margin: 15px;
   font-family: 'Montserrat', sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .accent-bar {
@@ -41,9 +44,30 @@
 .habit-stats {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  padding: 0px 25px;
+  place-items: center;
   margin-bottom: 20px;
+  text-align: center;
 }
+.delete-btn {
+  background: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  z-index: 10;
+  padding: 10px;
+  border-radius: 30px;
+  transition: background 0.5s ease;
+}
+.delete-btn:hover {
+  background-color: #949494;
+  cursor: pointer;
+  font-size: 1.1rem;
+  z-index: 10;
+  padding: 10px;
+  border-radius: 20px;
+  transition: background 0.2s;
+}
+
 
 .check-box {
   width: 50px;
@@ -128,7 +152,21 @@
 
 .days-row{
   display: grid;
-  grid-template-columns: repeat(4, 1fr); 
-  justify-items: center;
+  grid-template-columns: 40px 40px 40px 40px; 
+  justify-content: space-evenly;
   gap: 10px;
+}
+
+.day-column{
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  gap: 3px;
+}
+
+.status-grid{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
 }

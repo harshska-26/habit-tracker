@@ -10,12 +10,33 @@ export const habitTrackerData = async() => {
     }
 }
 
-export const addHabit = async (id, name, description) => {
-    const payload = { 
-        id: id,
-        name: name, 
-        description: description 
-    };
-    const res = await axios.post("http://localhost:4000/addHabit", payload);
-    return res.data;
+export const addHabit = async (id, name, description, completed, streak, progress) => {
+    try{
+
+        const payload = { 
+            id: id,
+            name: name, 
+            description: description,
+            streak: streak,
+            completed_days: JSON.stringify(completed),
+            progress: JSON.stringify(progress),
+        };
+        const res = await axios.post("http://localhost:4000/addHabit", payload);
+        return res.data;
+    }catch(error){
+        console.log(`error is at posting response ${error}`)
+        throw error
+    }
+};
+
+export const deleteHabit = async (id) => {
+    try {
+        const res = await axios.delete(`http://localhost:4000/delHabit`, {
+            data: { id: id }
+        });
+        return res;
+    } catch (error) {
+        console.log(`error at delete Service ${error}`);
+        throw error;
+    }
 };

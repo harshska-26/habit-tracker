@@ -20,14 +20,26 @@ export const Habit = () => {
     }, []);
 
     const addNewHabitRow = () => {
+        const maxId = allHabits.length > 0 
+        ? Math.max(...allHabits.map(h => Number(h.id))) 
+        : 0;
         const newBlankHabit = {
-            id: 0,
+            id: maxId + 1,
             name: "",
             description: "",
-            streak: 0
+            streak: 0,
+            completed_days: [],
+            progress: 0,
         };
         setAllHabits([...allHabits, newBlankHabit ]); 
+
     };
+
+    const handleDeleteUI = (idToDelete) => {
+        setAllHabits(allHabits.filter(habit => habit.id !== idToDelete));
+    };
+
+    console.log("Current habits in state:", allHabits)
 
     return (
         <motion.div 
@@ -42,13 +54,13 @@ export const Habit = () => {
                 </button>
             </div>
 
-            {/* Grid for the cards */}
             <div className="habit-grid">
                 {allHabits.map((h, index) => (
                     <HabitDet 
                         key={h.id}
-                        indexid={index} 
+                        indexid={index + 1} 
                         habit={h} 
+                        onDelete={handleDeleteUI}
                     />
                 ))}
             </div>
