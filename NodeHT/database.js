@@ -1,16 +1,16 @@
-const { Client } = require("pg");
+const {Client} = require("pg")
 
 const client = new Client({
   host: "localhost",
   user: "postgres",
   port: 5432,
   password: "Mohar123jvyy",
-  database: "habitsdb",
-});
+  database: "habitsdb"
+})
 
-client.connect().then(() => console.log("connected"));
+client.connect().then(() => console.log("connected"))
 
-module.exports = client; 
+module.exports = client;
 
 // client.query('Select * from habitstable',(err, res) => {
 //     if(!err){

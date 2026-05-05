@@ -9,11 +9,11 @@ export const HabitDet = ({ habit, indexid, onDelete }) => {
   const [text, setText] = useState(name || "");
   const [desc, setDesc] = useState(description || "");
   const [completed, setCompleted] = useState(
-  completed_days && completed_days.length === 7 
-    ? completed_days 
-    : new Array(7).fill(false)
-);
-  const [isEditing, setIsEditing] = useState(!name);
+    completed_days && completed_days.length === 7
+      ? completed_days
+      : new Array(7).fill(false)
+  );
+  const [isEditing, setIsEditing] = useState(!name);  
 
   const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
   const progress = Math.round((completed.filter((val) => val === true).length / 7) * 100);
@@ -34,7 +34,6 @@ export const HabitDet = ({ habit, indexid, onDelete }) => {
       setIsEditing(false);
       return;
     }
-
     setIsEditing(false);
     try {
       await addHabit(indexid, text, desc, completed, onestreak, progress);
@@ -43,27 +42,37 @@ export const HabitDet = ({ habit, indexid, onDelete }) => {
     }
   };
 
+  const calculateCurrentWeekStreak = (daysArray) => {
+    let max = 0;
+    let current = 0;
+    daysArray.forEach(val => {
+      if (val) {
+        current++;
+        if (current > max) max = current;
+      } else {
+        current = 0;
+      }
+    });
+    return max;
+  };
+
+  const currentWeekStreak = calculateCurrentWeekStreak(completed);
+
   const taskOnClick = async (index) => {
     const newCompleted = completed.map((val, i) => (i === index ? !val : val));
     setCompleted(newCompleted);
 
-    let currentS = 0;
-    let maxS = 0;
-
-    for (let i = 0; i < newCompleted.length; i++) {
-      if (newCompleted[i] === true) {
-        currentS++;
-        if (currentS > maxS) maxS = currentS;
-      } else {
-        currentS = 0;
-      }
-    }
-    setStreak(maxS);
-
+    const weekMax = calculateCurrentWeekStreak(newCompleted);
     const newProgress = Math.round((newCompleted.filter((val) => val === true).length / 7) * 100);
 
+    let newLongestStreak = onestreak;
+    if (weekMax > onestreak) {
+      newLongestStreak = weekMax;
+      setStreak(weekMax);
+    }
+
     try {
-      await addHabit(indexid, text, desc, newCompleted, maxS, newProgress);
+      await addHabit(indexid, text, desc, newCompleted, newLongestStreak, newProgress);
     } catch (err) {
       console.error("Sync error:", err);
     }
@@ -102,7 +111,7 @@ export const HabitDet = ({ habit, indexid, onDelete }) => {
         </div>
         <div className="flame-badge">
           <span>🔥</span>
-          <span className="streak-count">{onestreak}</span>
+          <span className="streak-count">{currentWeekStreak}</span>
         </div>
       </div>
 
@@ -129,18 +138,18 @@ export const HabitDet = ({ habit, indexid, onDelete }) => {
 
       <div className="habit-footer">
         <div className="stat-row">
-          <span>🔥 Longest Streak</span>
+          <span>🏆 Longest Streak</span>
           <strong>{onestreak} {onestreak === 1 ? 'day' : 'days'}</strong>
-          </div>
-          </div>
+        </div>
+      </div>
     </div>
   );
 };
 
 
 
-  // const [isOpen, setIsOpen] = useState(false);
-        {/* </div>
+// const [isOpen, setIsOpen] = useState(false);
+{/* </div>
         <button className="view-details" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? "✖ Close Details" : "👁 View Details"}
         </button>

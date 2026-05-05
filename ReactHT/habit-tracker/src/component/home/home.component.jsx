@@ -7,7 +7,6 @@ export const Home = () => {
   const navigate = useNavigate();
 
   const habitClick = () => {
-    console.log("hiiii");
     navigate("/habits");
   };
 

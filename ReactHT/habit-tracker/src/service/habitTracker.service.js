@@ -12,7 +12,6 @@ export const habitTrackerData = async() => {
 
 export const addHabit = async (id, name, description, completed, streak, progress) => {
     try{
-
         const payload = { 
             id: id,
             name: name, 
@@ -31,7 +30,7 @@ export const addHabit = async (id, name, description, completed, streak, progres
 
 export const deleteHabit = async (id) => {
     try {
-        const res = await axios.delete(`http://localhost:4000/delHabit`, {
+        const res = await axios.delete(`http://localhost:4000/delHabit/`, {
             data: { id: id }
         });
         return res;

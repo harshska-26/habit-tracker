@@ -1,4 +1,3 @@
-// Controllers/delHabit.controller.js
 const client = require("../database");
 
 const delHabitCtrl = async (req, res) => {
@@ -6,8 +5,7 @@ const delHabitCtrl = async (req, res) => {
     const { id } = req.body; 
     const query = `DELETE FROM habits WHERE id = $1 RETURNING *;`;
     const result = await client.query(query, [id]);
-
-    res.status(200).json({ message: "Deleted successfully", deletedHabit: result.rows[0] });
+    res.status(200).json({ message: "Deleted successfully", deletedHabit: result.rows[0]});
     console.log("DELETED ID:", id);
   } catch (error) {
     console.error("Delete Error:", error);

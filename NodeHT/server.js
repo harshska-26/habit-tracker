@@ -26,8 +26,15 @@ app.get("/", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
+
+app.get("/workPoint", (req, res) => {
+  return res.status(200).json("succesfully running")
+})
+
 app.post("/addHabit", addHabbitVal, addHabbitCtrl);
+
 app.delete("/delHabit", delHabitVal, delHabitCtrl);
+
 app.put("/nextWeek", async (req, res) => {
   try {
     const query = `

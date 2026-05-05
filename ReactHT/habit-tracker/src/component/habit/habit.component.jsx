@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { habitTrackerData } from "../../service/habitTracker.service";
 
 
-
 export const Habit = () => {
     const [allHabits, setAllHabits] = useState([]);
 
@@ -20,9 +19,9 @@ export const Habit = () => {
     }, []);
 
     const addNewHabitRow = () => {
-        const maxId = allHabits.length > 0 
-        ? Math.max(...allHabits.map(h => Number(h.id))) 
-        : 0;
+        const maxId = allHabits.length > 0
+            ? Math.max(...allHabits.map(h => Number(h.id)))
+            : 0;
         const newBlankHabit = {
             id: maxId + 1,
             name: "",
@@ -31,8 +30,7 @@ export const Habit = () => {
             completed_days: [],
             progress: 0,
         };
-        setAllHabits([...allHabits, newBlankHabit ]); 
-
+        setAllHabits([...allHabits, newBlankHabit]);
     };
 
     const handleDeleteUI = (idToDelete) => {
@@ -42,10 +40,10 @@ export const Habit = () => {
     console.log("Current habits in state:", allHabits)
 
     return (
-        <motion.div 
-            className="habit-page-container" 
-            initial={{ opacity: 0 }} 
-            animate={{ opacity: 1 }} 
+        <motion.div
+            className="habit-page-container"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
         >
             <div className="add-habit-header">
@@ -56,10 +54,10 @@ export const Habit = () => {
 
             <div className="habit-grid">
                 {allHabits.map((h, index) => (
-                    <HabitDet 
+                    <HabitDet
                         key={h.id}
-                        indexid={index + 1} 
-                        habit={h} 
+                        indexid={index + 1}
+                        habit={h}
                         onDelete={handleDeleteUI}
                     />
                 ))}

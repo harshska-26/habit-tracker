@@ -41,7 +41,7 @@ nav h1 {
 }
 
 #next-week-nav-btn:hover {
-  background-color: rgba(112, 255, 255, 0.558);
+  background: linear-gradient(to right, rgba(165, 255, 255, 0.601), rgba(255, 192, 203, 0.579));
   color: #454545;
   box-shadow: 2px 2px 2px 2px;
 }
