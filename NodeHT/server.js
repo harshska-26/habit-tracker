@@ -27,10 +27,6 @@ app.get("/", async (req, res) => {
   }
 });
 
-app.get("/workPoint", (req, res) => {
-  return res.status(200).json("succesfully running")
-})
-
 app.post("/addHabit", addHabbitVal, addHabbitCtrl);
 
 app.delete("/delHabit", delHabitVal, delHabitCtrl);
@@ -39,7 +35,9 @@ app.put("/nextWeek", async (req, res) => {
   try {
     const query = `
       UPDATE habits 
-      SET completed_days = '[]'::jsonb, 
+      SET 
+      last_week_progress = progress,
+      completed_days = '[]'::jsonb, 
           progress = 0;
     `;
     await client.query(query);
