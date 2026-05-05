@@ -1,7 +1,7 @@
 nav {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
   align-items: center;
   box-sizing: border-box;
   place-items: center;
@@ -15,17 +15,27 @@ nav h1 {
 }
 
 .nav-center {
+  position: absolute;
+  left: 44%;
   display: flex;
+  align-items: center;
   cursor: pointer;
   place-items: center;
-  margin-left: 70px;
 }
 
-.logo {
+nav .logo {
   width: 70px;
   height: 70px;
   margin-right: 5px;
   cursor: pointer;
+}
+nav .home-logo {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  margin-right: 5px;
+  cursor: pointer;
+  justify-content: flex-start;
 }
 
 #next-week-nav-btn {

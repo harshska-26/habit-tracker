@@ -10,7 +10,7 @@ export const habitTrackerData = async() => {
     }
 }
 
-export const addHabit = async (id, name, description, completed, streak, progress) => {
+export const addHabit = async (id, name, description, completed, streak, progress, lw_progress) => {
     try{
         const payload = { 
             id: id,
@@ -19,6 +19,7 @@ export const addHabit = async (id, name, description, completed, streak, progres
             streak: streak,
             completed_days: JSON.stringify(completed),
             progress: JSON.stringify(progress),
+            last_week_progress: lw_progress,
         };
         const res = await axios.post("http://localhost:4000/addHabit", payload);
         return res.data;
@@ -39,3 +40,4 @@ export const deleteHabit = async (id) => {
         throw error;
     }
 };
+

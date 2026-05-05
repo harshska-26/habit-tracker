@@ -1,42 +1,56 @@
-import { useState } from 'react';
-import './habitDetails.component.css';
-import { addHabit, deleteHabit } from '../../service/habitTracker.service';
+import { useState } from "react";
+import "./habitDetails.component.css";
+import { addHabit, deleteHabit } from "../../service/habitTracker.service";
+import { useNavigate } from "react-router-dom";
 
 export const HabitDet = ({ habit, indexid, onDelete }) => {
-  const { description, name, streak, completed_days } = habit;
-
+  const navigate = useNavigate();
+  const { description, name, streak, completed_days, last_week_progress } =
+    habit;
   const [onestreak, setStreak] = useState(streak || 0);
   const [text, setText] = useState(name || "");
   const [desc, setDesc] = useState(description || "");
   const [completed, setCompleted] = useState(
     completed_days && completed_days.length === 7
       ? completed_days
-      : new Array(7).fill(false)
+      : new Array(7).fill(false),
   );
-  const [isEditing, setIsEditing] = useState(!name);  
-
-  const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-  const progress = Math.round((completed.filter((val) => val === true).length / 7) * 100);
+  const [isEditing, setIsEditing] = useState(!name);
+  const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  const progress = Math.round(
+    (completed.filter((val) => val === true).length / 7) * 100,
+  );
 
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter' && text.trim() !== "") {
+    if (e.key === "Enter" && text.trim() !== "") {
       setIsEditing(false);
       handleSave();
     }
   };
 
-  console.log(`Task ${indexid} state:`, completed);
-
+  // console.log(`Task ${indexid} state:`, completed);
 
   const handleSave = async (e) => {
-    if (e?.relatedTarget?.id === "desc-input" || e?.relatedTarget?.id === "taskname-input") return;
+    if (
+      e?.relatedTarget?.id === "desc-input" ||
+      e?.relatedTarget?.id === "taskname-input"
+    )
+      return;
     if (!text.trim()) {
       setIsEditing(false);
       return;
     }
     setIsEditing(false);
     try {
-      await addHabit(indexid, text, desc, completed, onestreak, progress);
+      await addHabit(
+        indexid,
+        text,
+        desc,
+        completed,
+        onestreak,
+        progress,
+        last_week_progress,
+      );
     } catch (err) {
       console.error("Validation failed:", err.response?.data);
     }
@@ -45,7 +59,7 @@ export const HabitDet = ({ habit, indexid, onDelete }) => {
   const calculateCurrentWeekStreak = (daysArray) => {
     let max = 0;
     let current = 0;
-    daysArray.forEach(val => {
+    daysArray.forEach((val) => {
       if (val) {
         current++;
         if (current > max) max = current;
@@ -63,8 +77,9 @@ export const HabitDet = ({ habit, indexid, onDelete }) => {
     setCompleted(newCompleted);
 
     const weekMax = calculateCurrentWeekStreak(newCompleted);
-    const newProgress = Math.round((newCompleted.filter((val) => val === true).length / 7) * 100);
-
+    const newProgress = Math.round(
+      (newCompleted.filter((val) => val === true).length / 7) * 100,
+    );
     let newLongestStreak = onestreak;
     if (weekMax > onestreak) {
       newLongestStreak = weekMax;
@@ -72,7 +87,15 @@ export const HabitDet = ({ habit, indexid, onDelete }) => {
     }
 
     try {
-      await addHabit(indexid, text, desc, newCompleted, newLongestStreak, newProgress);
+      await addHabit(
+        indexid,
+        text,
+        desc,
+        newCompleted,
+        newLongestStreak,
+        newProgress,
+        last_week_progress,
+      );
     } catch (err) {
       console.error("Sync error:", err);
     }
@@ -90,16 +113,37 @@ export const HabitDet = ({ habit, indexid, onDelete }) => {
     }
   };
 
+  const handleEachHabit = () => {
+    navigate("/eachHabit", {state : habit})
+  }
+
   return (
     <div className="habit-card" key={indexid}>
-      <div className={`accent-bar ${indexid % 2 === 0 ? 'pink' : 'blue'}`}></div>
+      <div
+        className={`accent-bar ${indexid % 2 === 0 ? "pink" : "blue"}`}
+      ></div>
 
       <div className="habit-header">
         <div className="text-section" onClick={() => setIsEditing(true)}>
           {isEditing ? (
             <div className="edit-fields">
-              <input id="taskname-input" type="text" value={text} onChange={(e) => setText(e.target.value)} onBlur={handleSave} onKeyDown={handleKeyDown} autoFocus />
-              <input id="desc-input" type="text" value={desc} onChange={(e) => setDesc(e.target.value)} onBlur={handleSave} onKeyDown={handleKeyDown} />
+              <input
+                id="taskname-input"
+                type="text"
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+                onBlur={handleSave}
+                onKeyDown={handleKeyDown}
+                autoFocus
+              />
+              <input
+                id="desc-input"
+                type="text"
+                value={desc}
+                onChange={(e) => setDesc(e.target.value)}
+                onBlur={handleSave}
+                onKeyDown={handleKeyDown}
+              />
             </div>
           ) : (
             <>
@@ -118,8 +162,14 @@ export const HabitDet = ({ habit, indexid, onDelete }) => {
       <div className="habit-stats">
         <div className="progress-circle">
           <div className="circle-inner">Progress : {progress}%</div>
+          <div className="circle-inner">
+            {last_week_progress > 0 &&
+              `last week Progress : ${last_week_progress}%`}
+          </div>
         </div>
-        <button className="delete-btn" onClick={handleDelete}>🗑️</button>
+        <button className="delete-btn" onClick={handleDelete}>
+          🗑️
+        </button>
       </div>
 
       <div className="status-grid">
@@ -128,7 +178,10 @@ export const HabitDet = ({ habit, indexid, onDelete }) => {
           {days.map((day, i) => (
             <div key={i} className="day-column">
               <span>{day}</span>
-              <div className={`check-box ${completed[i] ? 'checked' : ''}`} onClick={() => taskOnClick(i)}>
+              <div
+                className={`check-box ${completed[i] ? "checked" : ""}`}
+                onClick={() => taskOnClick(i)}
+              >
                 {completed[i] && "✓"}
               </div>
             </div>
@@ -139,18 +192,16 @@ export const HabitDet = ({ habit, indexid, onDelete }) => {
       <div className="habit-footer">
         <div className="stat-row">
           <span>🏆 Longest Streak</span>
-          <strong>{onestreak} {onestreak === 1 ? 'day' : 'days'}</strong>
+          <strong>
+            {onestreak} {onestreak === 1 ? "day" : "days"}
+          </strong>
+        </div>
+        <div>
+          <button className="view-details" onClick={handleEachHabit}>
+             View Details ➡️
+          </button>
         </div>
       </div>
     </div>
   );
 };
-
-
-
-// const [isOpen, setIsOpen] = useState(false);
-{/* </div>
-        <button className="view-details" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? "✖ Close Details" : "👁 View Details"}
-        </button>
-      </div> */}

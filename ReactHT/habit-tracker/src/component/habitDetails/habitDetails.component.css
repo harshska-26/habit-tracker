@@ -95,9 +95,11 @@
   border-radius: 10px;
   cursor: pointer;
   margin-top: 10px;
-  color: #666;
+  color: #000000;
   outline: none;
   transition: 0.4s;
+  font-size: medium;
+  font-weight: 700;
 }
 
 .view-details:hover {
@@ -123,6 +125,12 @@
   place-items: center;
   justify-content: space-around;
 
+}
+
+.progress-circle{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 #taskname-input {
