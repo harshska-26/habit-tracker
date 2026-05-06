@@ -40,4 +40,3 @@ export const deleteHabit = async (id) => {
         throw error;
     }
 };
-

@@ -127,12 +127,6 @@
 
 }
 
-.progress-circle{
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
 #taskname-input {
   width: 80%;
   padding: 5px 5px;

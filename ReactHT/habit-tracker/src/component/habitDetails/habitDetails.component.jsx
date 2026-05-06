@@ -5,8 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 export const HabitDet = ({ habit, indexid, onDelete }) => {
   const navigate = useNavigate();
-  const { description, name, streak, completed_days, last_week_progress } =
-    habit;
+  const { description, name, streak, completed_days, last_week_progress } = habit;
   const [onestreak, setStreak] = useState(streak || 0);
   const [text, setText] = useState(name || "");
   const [desc, setDesc] = useState(description || "");
@@ -17,9 +16,7 @@ export const HabitDet = ({ habit, indexid, onDelete }) => {
   );
   const [isEditing, setIsEditing] = useState(!name);
   const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-  const progress = Math.round(
-    (completed.filter((val) => val === true).length / 7) * 100,
-  );
+  const progress = Math.round((completed.filter((val) => val === true).length / 7) * 100,);
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && text.trim() !== "") {
@@ -27,8 +24,6 @@ export const HabitDet = ({ habit, indexid, onDelete }) => {
       handleSave();
     }
   };
-
-  // console.log(`Task ${indexid} state:`, completed);
 
   const handleSave = async (e) => {
     if (
@@ -46,7 +41,7 @@ export const HabitDet = ({ habit, indexid, onDelete }) => {
         indexid,
         text,
         desc,
-        completed,
+        completed_days,
         onestreak,
         progress,
         last_week_progress,
@@ -113,8 +108,8 @@ export const HabitDet = ({ habit, indexid, onDelete }) => {
     }
   };
 
-  const handleEachHabit = () => {
-    navigate("/eachHabit", {state : habit})
+  const handleEachHabit = async() => {
+      navigate("/eachHabit", {state : habit.id})
   }
 
   return (
